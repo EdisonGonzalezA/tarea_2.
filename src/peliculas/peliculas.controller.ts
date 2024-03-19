@@ -43,7 +43,4 @@ import { PeliculasDTO } from './dto/peliculas.dto';
       return this.peliculasService.insertarActores(peliculasId, actoresId);
     }
   }
-/*import { Controller } from '@nestjs/common';
 
-@Controller('peliculas')
-export class PeliculasController {}*/
