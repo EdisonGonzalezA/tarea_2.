@@ -12,7 +12,7 @@ export class PeliculasService {
     @InjectModel(PELICULAS.name) private readonly model: Model<IPeliculas>,
   ) {}
   insertar(peliculasDTO: PeliculasDTO): Promise<IPeliculas> {
-    const nuevaPelicula = new this.model(PeliculasDTO);
+    const nuevaPelicula = new this.model(peliculasDTO);
     return nuevaPelicula.save();
   }
   todos(): Promise<IPeliculas[]> {
@@ -21,14 +21,14 @@ export class PeliculasService {
   uno(id: string): Promise<IPeliculas> {
     return this.model.findById(id).populate('actores');
   }
-  actualizar(id: string, PeliculasDTO: PeliculasDTO): Promise<IPeliculas> {
-    return this.model.findByIdAndUpdate(id, PeliculasDTO, { new: true });
+  actualizar(id: string, peliculasDTO: PeliculasDTO): Promise<IPeliculas> {
+    return this.model.findByIdAndUpdate(id, peliculasDTO, { new: true });
   }
   async eliminar(id: string) {
     await this.model.findByIdAndDelete(id);
     return { status: HttpStatus.OK, msg: 'Pelicula eliminada' };
   }
-  async insertarActor(
+  async insertarActores(
     peliculasId: string,
     actoresId: string,
   ): Promise<IPeliculas> {
